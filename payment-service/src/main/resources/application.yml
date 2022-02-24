@@ -1,0 +1,28 @@
+spring.application.name: customer
+server:
+  port : 5050
+spring.kafka:
+  bootstrap-servers: 127.0.0.1:9092
+  consumer:
+    key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "*"
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.LongSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+spring.output.ansi.enabled: ALWAYS
+
+logging.pattern.console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%15.15t]){yellow} %clr(:){red} %clr(%m){faint}%n"
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:customerDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  h2:
+    console.enabled: true
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
