@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: sagas-namespace
+  name: stock-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-app
+  template:
+    metadata:
+      name: stock-app
+      namespace: sagas-namespace
+      labels:
+        app: stock-app
+    spec:
+      containers:
+      - name: stock-pod
+        image: jonathanperezdev/spring-images:stock-service
+        ports:
+        - containerPort: 5052
+        imagePullPolicy: Always

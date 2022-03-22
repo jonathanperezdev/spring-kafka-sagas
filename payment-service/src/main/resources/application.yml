@@ -2,7 +2,7 @@ spring.application.name: customer
 server:
   port : 5050
 spring.kafka:
-  bootstrap-servers: 127.0.0.1:9092
+  bootstrap-servers: 192.168.49.2:30092
   consumer:
     key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
     value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

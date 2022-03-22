@@ -2,7 +2,7 @@ spring.application.name: orders
 server:
   port : 5051
 spring.kafka:
-  bootstrap-servers: 127.0.0.1:9092
+  bootstrap-servers: 192.168.49.2:30092
   producer:
     key-serializer: org.apache.kafka.common.serialization.LongSerializer
     value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -11,6 +11,7 @@ spring.kafka:
       default.key.serde: org.apache.kafka.common.serialization.Serdes$LongSerde
       default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
       spring.json.trusted.packages: "*"
+      replication.factor: 1
     state-dir: /tmp/kafka-streams/
 
 spring.output.ansi.enabled: ALWAYS

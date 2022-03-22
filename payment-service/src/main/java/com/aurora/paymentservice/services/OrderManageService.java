@@ -4,20 +4,23 @@ import com.aurora.base.domain.Order;
 import com.aurora.paymentservice.domain.Customer;
 import com.aurora.paymentservice.repositories.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 @Slf4j
 public class OrderManageService {
-    private static final String SOURCE = "payment";
+
+    @Autowired
     private CustomerRepository repository;
+
+    @Autowired
     private KafkaTemplate<Long, Order> template;
 
-    public OrderManageService(CustomerRepository repository, KafkaTemplate<Long, Order> template) {
-        this.repository = repository;
-        this.template = template;
-    }
+    private static final String SOURCE = "payment";
 
     public void reserve(Order order) {
         Customer customer = repository.findById(order.getCustomerId()).get();

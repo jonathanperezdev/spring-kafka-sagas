@@ -35,6 +35,7 @@ public class OrderManageService {
                 order.setStatus("REJECT");
             }
 
+            order.setSource(SOURCE);
             template.send("stock-orders", order.getId(), order);
             log.info("Sent: {}", order);
         }

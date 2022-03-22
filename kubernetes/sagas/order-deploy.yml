@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: sagas-namespace
+  name: order-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-app
+  template:
+    metadata:
+      name: order-app
+      namespace: sagas-namespace
+      labels:
+        app: order-app
+    spec:
+      containers:
+      - name: order-pod
+        image: jonathanperezdev/spring-images:order-service
+        ports:
+        - containerPort: 5051
+        imagePullPolicy: Always

@@ -2,6 +2,7 @@ package com.aurora.orderservice.controller;
 
 import com.aurora.base.domain.Order;
 import com.aurora.orderservice.service.OrderGeneratorService;
+import com.aurora.orderservice.service.OrderManageService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.streams.StoreQueryParameters;
 import org.apache.kafka.streams.state.KeyValueIterator;
@@ -26,37 +27,21 @@ import java.util.concurrent.atomic.AtomicLong;
 public class OrderController {
 
     @Autowired
-    private StreamsBuilderFactoryBean kafkaStreamsFactory;
-
-    @Autowired
-    private KafkaTemplate<Long, Order> template;
-
-    @Autowired
     private OrderGeneratorService orderGeneratorService;
 
-    private AtomicLong id = new AtomicLong();
+    @Autowired
+    private OrderManageService orderManageService;
+
+
 
     @PostMapping
     public Order create(@RequestBody Order order) {
-        order.setId(id.incrementAndGet());
-        template.send("orders", order.getId(), order);
-        log.info("Sent: {}", order);
-
-        return order;
+        return orderManageService.createOrder(order);
     }
 
     @GetMapping
     public List<Order> all() {
-        List<Order> orders = new ArrayList<>();
-
-        ReadOnlyKeyValueStore<Long, Order> store = kafkaStreamsFactory
-                .getKafkaStreams()
-                .store(StoreQueryParameters.fromNameAndType(
-                        "orders",
-                        QueryableStoreTypes.keyValueStore()));
-        KeyValueIterator<Long, Order> it = store.all();
-        it.forEachRemaining(kv -> orders.add(kv.value));
-        return orders;
+        return orderManageService.getAllOrders();
     }
 
     @PostMapping("/generate")

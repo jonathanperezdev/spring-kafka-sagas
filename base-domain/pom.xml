@@ -10,6 +10,10 @@
 
   <artifactId>base-domain</artifactId>
 
+  <properties>
+    <java.version>11</java.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>

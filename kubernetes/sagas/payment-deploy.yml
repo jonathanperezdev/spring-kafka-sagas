@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: sagas-namespace
+  name: payment-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-app
+  template:
+    metadata:
+      name: payment-app
+      namespace: sagas-namespace
+      labels:
+        app: payment-app
+    spec:
+      containers:
+      - name: payment-pod
+        image: jonathanperezdev/spring-images:payment-service
+        ports:
+        - containerPort: 5050
+        imagePullPolicy: Always

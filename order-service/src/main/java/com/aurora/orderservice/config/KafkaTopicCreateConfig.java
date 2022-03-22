@@ -12,6 +12,7 @@ public class KafkaTopicCreateConfig {
     public NewTopic orders() {
         return TopicBuilder.name("orders")
                 .partitions(3)
+                .replicas(1)
                 .compact()
                 .build();
     }
@@ -20,6 +21,7 @@ public class KafkaTopicCreateConfig {
     public NewTopic paymentTopic() {
         return TopicBuilder.name("payment-orders")
                 .partitions(3)
+                .replicas(1)
                 .compact()
                 .build();
     }
@@ -28,6 +30,7 @@ public class KafkaTopicCreateConfig {
     public NewTopic stockTopic() {
         return TopicBuilder.name("stock-orders")
                 .partitions(3)
+                .replicas(1)
                 .compact()
                 .build();
     }

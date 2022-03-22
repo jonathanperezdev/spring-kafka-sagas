@@ -7,7 +7,6 @@
 		<groupId>com.aurora</groupId>
 		<artifactId>spring-kafka-sagas</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>com.aurora</groupId>
@@ -15,6 +14,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>stock-service</name>
 	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>11</java.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -54,6 +57,20 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:11</image>
+					</from>
+					<to>
+						<image>registry.hub.docker.com/jonathanperezdev/spring-images</image>
+						<tags>${project.artifactId}</tags>
+					</to>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
