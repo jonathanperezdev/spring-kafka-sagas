@@ -1,8 +1,12 @@
 # spring-kafka-sagas
+Project showing an order creation system with microservice architecture, the transaction is split into three microservices using the Sagas pattern  
 
-Project showing an order creation using a microservice architecture based on messages and Kafka Streams with SpringBoot Kafka Stream and Sagas pattern and Kubernetes Minikube
-
-The process involved in this example is explained using next diagram
+## Dependencies
+- [x] SpringBoot
+- [x] Kafka Streams
+- [x] Kubernetes - Minikube
+- [x] Lombok
+- [x] Jib - Google tool to create docker images
 
 ## Start the application
 
@@ -28,6 +32,7 @@ Here in postman folder, you will find two end points
 * GET http://192.168.49.2:30001/orders to get all the created orders
 
 ## Diagram
+The process involved in this example is explained using next diagram
 
 ![Sagas Commit step](./diagrams/Spring-Kafka-Sagas_create.jpg)
 
@@ -59,12 +64,4 @@ This example is based on **Distributed Transactions in Microservices with Kafka 
 * [Tutorial GitHub](https://github.com/piomin/sample-spring-kafka-microservices)
 * [Kafka Streams Theory](https://medium.com/sfu-cspmp/sailing-through-kafka-streams-ec045d78c667)
 * [Build and Publish Docker images JIB](https://docs.google.com/document/d/1_O5EEtaPmaq-O7HwxAjPX2std6iEpvdjXaaHKuYDK20/edit#heading=h.qmqg80fj22di)
-
-## Dependencies
-
-- [x] SpringBoot
-- [x] Kafka Streams
-- [x] Kubernetes - Minikube
-- [x] Lombok
-- [x] Jib - Google tool to create docker images
 
