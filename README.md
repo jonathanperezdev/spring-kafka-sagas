@@ -1,12 +1,13 @@
 # spring-kafka-sagas
 Project showing an order creation system with microservice architecture, the transaction is split into three microservices using the Sagas pattern  
 
-## Dependencies
+## Tools
 - [x] SpringBoot
 - [x] Kafka Streams
 - [x] Kubernetes - Minikube
 - [x] Lombok
 - [x] Jib - Google tool to create docker images
+- [x] Sagas Pattern
 
 ## Start the application
 
